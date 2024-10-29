@@ -1,0 +1,24 @@
+File scope - declared in main body
+Variable can be used by any function following declaration
+
+Local scope - declared in function
+Variable can only be used within its function
+
+Parameter variables can only be used inside functions
+Can be considered a kind of local variable
+
+Lifetime of local variable is determined by scope and when memory is allocated
+Memory allocated when local scope is entered at runtime
+    Deallocated when scope is exited
+    Using stack
+
+Lifetime of file scope variable is whole runtime
+Memory allocated at start of runtime, deallocated when program ends
+Can be used only when name in scope (but memory remains allocated if running different file within program)
+
+Compound statement/block - statement containing list of statements e.g. function
+Defines a local scope
+Scopes can be nested - can have diff variable of same name in nested block
+
+Global scope - can be achieved using extern (which declares a variable defined in a different file)
+Variable can be accessed across the whole program - multiple files

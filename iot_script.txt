@@ -1,0 +1,5 @@
+Hi, this is my presentation on the Internet of Things, or IoT.
+
+One of the IoT's most pressing challenges is security. Introducing new devices to a network increases the amount of possible vulnerabilities. Instead of targeting secure, proven routers or laptops, cyberattacks can just exploit weak links such as smart lightbulbs, whose security is less developed.
+
+Another issue is

@@ -1,0 +1,29 @@
+Strings always end with a null \0
+Array must be big enough to hold both contents of string *and* null
+E.g. need 6 bytes to store string "hello"
+
+A string is only the sequence of characters terminated by \0
+A char array is what is actually stored in memory, and can be larger than the string
+    In that case the array elements after \0 remain unused
+
+Looping through a string can be simplified
+    for (int counter = 0; mystr[n]; counter++)
+    \0 will return false and terminate, any other value will return true
+
+Inbuilt string functions
+    strlen(str)
+    strcpy(str1, str2) copies str2 into str1
+    strcat(str1, str2) concatenates str2 to str1
+    strchr(str, char) finds the first instance of char in str or \0
+    strcmp(str1, str2) compares str1 and str2 in ASCII order
+    strstr(str, substr) checks if substr is in str
+        returns pointer to start of substr or \0 if not in str
+
+Inputting strings
+Must specify maximum string length to avoid overflow
+scanf ends at whitespace - no sentences
+Can specify patterns
+    scanf("%20s %20s", name, surname) accepts 20-character name and surname separated by space
+
+Alternatively can use fgets(str, sizeof(str), stdin)
+Reads whole line (unless array fills up before end of line)

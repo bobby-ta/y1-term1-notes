@@ -1,0 +1,29 @@
+Function signature includes name, parameters and return type
+    E.g. int myfunc(char c)
+Every function has a unique signature wthin a single program (signature vs declaration? CHECK)
+    If not then error is thrown or 1st signature is taken
+
+A declaration is a function signature with a semicolon - lets program know the function exists
+    E.g. int myfunc(char c);
+Definition includes function body - actually tells program what function does
+    E.g. int myfunc(char c) {}
+
+Function must be declared before it is called
+Header files (.h) contain declarations
+
+Void is the empty type
+int myfunc() is actually int myfunc(void)
+
+Argument - value passed to function in called
+Parameter - variable defined in function definition, initialised with an argument value
+Argument is temporary, parameter is eternal
+
+Functions can only return 1 value, so arrays are not allowed
+    Structs, however, are, and can contain arrays
+
+Mathematical functions have referential transparency - always return the same value given the same arguments
+Programming functions don't
+
+Recursion is when a function calls itself
+    Too many recursive calls will use up all available stack memory crash program
+    Can result in unallocated memory getting overwritten - unpredictable

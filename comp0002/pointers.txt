@@ -1,0 +1,28 @@
+C programs are run in processes
+Each process is strictly isolated from others
+A process defines a virtual address space (program appears to be the only one running, has own memory allocation)
+Processes run on OS-controlled virtual memory system
+    Maps virtual memory to physical memory
+
+A pointer is a virtual memory address
+    Memory location of variable/data structure/function
+Pointer variable holds address of a value's 1st byte
+Pointer values are virtual memory addresses - not real
+
+Pointer size (in bits) must be big enough to represent any memory location
+32 bits only accounts for 4GB
+So pointers are typically 64 bits on regular electronics
+
+Why pointer-based data structures?
+Greater data access efficiency
+E.g. linked lists and trees
+
+Accessed using type name + "*"
+E.g. int *p is a pointer to an integer
+int **p is a pointer to a pointer to an integer
+
+Variable int (*functionPointer)(int) is a pointer to an int function with one int parameter
+
+Address-of operator &
+int *p = &i //p points to i
+int **q = &p //pointer q points to pointer p

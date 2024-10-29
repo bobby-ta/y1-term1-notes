@@ -1,0 +1,4 @@
+printf("[%20s]\n", "Hello") formats hello to width of 20 characters adding whitespace before
+printf("[%-20s]\n", "Hello") adds whitespace before
+
+Input is buffered

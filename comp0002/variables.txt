@@ -1,0 +1,47 @@
+Definition
+    Variable definition gives name and type and allocates memory
+    Declaration only gives name and type
+
+    Variable is only allocated memory for a fixed time
+        Depends on the kind/scope of variable
+        When variable goes out of scope, the memory is deallocated
+
+    If you don't initialise a variable, it will be undefined (whatever is in memory address is assigned to the variable)
+
+    Initialisation only happens once, assignment is every time after that
+
+
+Quirks :3
+    DOUBLE IS THE DEFAULT FOR FLOATING-POINT VALUES
+    ALWAYS ASSUME DOUBLE UNLESS STATED OTHERWISE
+    Floating-point values are represented by approximations - not exact
+        Float stores 32 bits, double stores 64
+        Float is assigned every time (including initialisation) with F at the end, e.g. float x = 3.14F
+        Otherwise it'd be a double
+
+    Hexadecimal assigned using 0x... (e.g. int y = 0xff = 255)
+
+Arithmetic operations
+    Dividing integers in C returns integers and dividing doubles returns doubles - operations are type-dependent
+
+    When operating with operands of different types, the less general type is promoted to the more general/precise one
+    E.g. integer promoted to double
+
+Relational operators
+    Floating-point numbers are represented inaccurately
+    So 3.123 == 3.0 + 0.123 might not work
+    Therefore, to check equality, set an arbitrary tolerance
+        double tolerance = 1e-6;
+        if (fabs(x - y) < tolerance) {
+            printf("x and y are more or less equal");
+        }
+
+Incrementing and decrementing
+    Pre-increment
+        int x = 10;
+        int y = x++; //After this, x = 11 and y = 10
+    Post-increment
+        int x = 10;
+        int y = ++x; //After this, x = y = 11
+
+Strings are arrays of characters

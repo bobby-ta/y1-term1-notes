@@ -1,0 +1,21 @@
+Arrays are declared like int myarr[5] = {1, 2, 3, 4, 5}
+Or int myarr[] = {1, 2, 3, 4, 5}
+Size is limited in both cases
+
+Local arrays are uninitialised, global arrays are initialised to 0
+
+Retrieving an array item with index out of range does *not* throw an error but returns the value at a different memory location (could be other variable)
+Assigning an array item with index out of range overwrites a memory location that might be allocated to oher coordinates
+
+ARRAY DOES NOT STORE ITS LENGTH
+Therefore we have to keep track of length elsewhere
+
+size_t is an unsigned integer pseudotype that represents value sizes/array lengths *in bytes*
+    Actually an alias for unsigned long (64-bit) or int (32-bit)
+Value sizes (int, double, etc.) depend on processor, compiler and OS
+Function sizeof (format specifier %z) returns variable size in bytes
+
+Arrays can be passed as parameter but length must also be passed
+    void myfunc(int values[10]) is treated the same as void myfunc(int values[])
+
+Functions can only return single values - not arrays

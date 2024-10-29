@@ -1,0 +1,18 @@
+Work through a C textbook over 3-4 weeks
+    Read the original C Programming book
+
+Compiler phases
+    Tokenisation
+    Parsing/grammar checking
+    Type checking
+    Code generation
+
+Go through intro to Unix on Moodle
+
+gcc options
+    -o [name] names output file
+    -Wall displays all warnings
+    -c generates .o file but not executable (a bunch of .os are assembled into an executable later)
+    -S outputs assembly code
+
+gcc can crosscompile code to be run on a diff processor using a diff architecture (e.g. for Arduino, which can't run a compiler itself)
