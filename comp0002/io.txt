@@ -1,4 +1,56 @@
+I/O is based on sequences of characters
+Uses file abstraction - open, read/write, close
+File handle connects connects file with device
+    Program treats everything as a file to read/write to - even peripherals
+
+Default files are created automatically when program is run
+    stdin - standard input, connected to default input (keyboard)
+    stdout - standard output, connected to default output (terminal view)
+    stderr - standard error, connected to default error output (terminal view)
+Default configuration can be overridden easily
+
+printf is a function in the standard C library that writes to stdout
 printf("[%20s]\n", "Hello") formats hello to width of 20 characters adding whitespace before
 printf("[%-20s]\n", "Hello") adds whitespace before
 
-Input is buffered
+!!!Input is read from a buffer, not directly from the keyboard!!!
+    Program is suspended while waiting for input
+    Once return pressed, whole input goes into buffer
+    Then program continues and takes input from buffer
+
+Can only input new stuff from keyboard if input buffer is empty
+    If buffer overflows from previous input statement then current statement will just take whatever is left over in the input buffer
+    Will NOT allow keyboard input
+
+Buffer clearing
+Code
+    char ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
+How it works
+    getchar() returns the next character from the input buffer
+    While statement iterates through input buffer without really doing anything to it, i.e. clears
+        Works because char is actually an 8-bit integer corresponding to the character's ASCII code
+
+    EOF means end of file (input stream closed) and is represented by -1
+        ch != EOF is evaluated ONLY if left sub-expression is true
+        Because left sub-expression evaluated first, same for ||
+
+Type char
+    8 bits/1 byte
+    Usually signed
+    getchar() for input, putchar(mychar) for output
+
+I/O redirection
+    Input
+        a.out < myfile - read stdin from other file
+    Output
+        a.out > myfile - write stdout to myfile, overwriting existing content
+        a.out >> myfile - write stdout to myfile, appending it to existing content
+        a.out | myfile - pipe stdout to stdin of myfile
+    Errors
+        a.out 2> myfile - redirect stderr to myfile, overwrite
+        a.out 2>> myfile - redirect stderr to myfile, append
+    Output and errors
+        a.out &> myfile - redirect both stdout and stderr to myfile, overwrite
+        a.out &>> myfile - redirect both stdout and stderr to myfile, append
+        a.out > file1 2> file2 - redirect stdout and stderr to diff files

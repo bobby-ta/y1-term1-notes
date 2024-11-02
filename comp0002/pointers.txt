@@ -1,28 +1,74 @@
 C programs are run in processes
-Each process is strictly isolated from others
-A process defines a virtual address space (program appears to be the only one running, has own memory allocation)
-Processes run on OS-controlled virtual memory system
-    Maps virtual memory to physical memory
+    Created by OS
+    Manages resources needed to run program
+    Each has a unique process identifier (pid)
+    OS allocates processor time to each process
+    Each process is strictly isolated on hardware level
+        Can't use each other's memory
+    Defines a virtual address space
+        Program has its own private memory
+        Runs as if it were the only one running on the computer
+    Processes run on virtual memory system
+        Maps virtual address space to real physical memory
+        Programs can share the same physical memory and resources
+        But each program sees only itself
 
-A pointer is a virtual memory address
-    Memory location of variable/data structure/function
-Pointer variable holds address of a value's 1st byte
-Pointer values are virtual memory addresses - not real
+Virtual address space - memory the program can see
+    Measured in bytes
+    Continuous sequence of memory in concept
+        Actually divided into diff segments for diff purposes
+            One for code, one for static data, one for global etc.
+            Large unused gaps between active segments
+    Each memory location in virtual address space has its own location
 
-Pointer size (in bits) must be big enough to represent any memory location
-32 bits only accounts for 4GB
-So pointers are typically 64 bits on regular electronics
+Pointer holds virtual memory address of first byte of a value
+    Can be variable, data structure, or function
+    Size depends on machine - typically 64-bit
+        64 bits can represent 16 exabytes' (2^64) worth of memory addresses
+        But in fact only 48 bits are used to represent memory location
+            Remaining 16 are used for memory mapping
+    Pointer values are virtual addresses
+        Unless code is OS-level (can access hardware)
+        Or running on basic hardware without OS, e.g. Arduino
 
-Why pointer-based data structures?
-Greater data access efficiency
-E.g. linked lists and trees
+Pointer-based data structures give greater freedom and efficiency
+    Linked lists
+        Use much smaller chunks of scattered memory
+        Can grow and shrink
+    Binary trees
+        Used by databases for very quick indexing and searching
 
-Accessed using type name + "*"
-E.g. int *p is a pointer to an integer
-int **p is a pointer to a pointer to an integer
-
-Variable int (*functionPointer)(int) is a pointer to an int function with one int parameter
+Pointer name always preceded by *
+    e.g. int *p = &i; is a pointer to an int
+Pointer can point to any type
+Can have a pointer to a pointer int **q = &p;
+    Can build dynamic multi-dimensional arrays
+        More efficient, saves resources
+        No need to allocate arbitrary block of memory to array
+Can have a pointer to a function int (*functionPointer) (int)
+    Promotes functions to first-class values
+    Used to implement callback functions (functions passed as arguments)
 
 Address-of operator &
-int *p = &i //p points to i
-int **q = &p //pointer q points to pointer p
+    Returns address of variable, used to assign value to pointer, e.g.
+        int i = 10;
+        int *p = &i; //p points at i
+    If variable goes out of scope, pointer will still point at the same address - which might be in use by another variable
+
+De-reference/indirection operator * (same as pointer initialiser)
+    int n = 10;
+    int *p = &n;
+    int t = *p; //Get value pointed at by pointer, t = 10
+    *p = 20; //Assign value to location pointed at, n = 20
+
+Arrays decay to pointers to their first element
+    int *p = myarr; is the same as iint *p = &(myarr[0]);
+    char *p = mystr; is the same as char *p = &(mystr[0]);
+
+Pointer arithmetic
+    Adding an offset to the pointer allows access to nth element, e.g.
+        int myarr[5] = {1, 2, 3, 4, 5};
+        int *p = myarr;
+        printf("%i \n", *(p+1)); //prints 2
+
+    Offset takes into account value sizes - no need to calculate actual number of pointer to nth element
