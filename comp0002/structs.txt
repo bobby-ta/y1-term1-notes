@@ -1,0 +1,53 @@
+Think of a struct as a dictionary
+    A way to group related variables together as 1 value
+    Allows multiple values to be returned from a function
+
+Initialising struct
+    struct coord {
+        int x;
+        int y;
+    }
+
+Manipulating struct instances
+    struct coord p1 = {21, 37} //Initialise instance
+    p1.x = 2; //Assign value to member
+    my_x = p1.x; //Retrieve member
+    !!!MODIFYING STRUCT MEMBERS IN LOCAL SCOPE DOES NOT CHANGE THEM PERMANENTLY!!!
+        Structs do not decay to pointers when passed as arguments
+
+You can have an array of structs
+    struct point points[10];
+    points[0].x = 5;
+    //points is of type array[10]
+    As always, the array will decay to struct point* when passed to function
+        Just like it'd decay to int* if an array of integers were passed
+
+Function that makes player structs
+    struct player createPlayer(int id, const char name[], int scores[]) {
+        struct player aPlayer;
+        aPlayer.id = id;
+        snprintf(aPlayer.name, sizeof(aPlayer.name), "%s", name);
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            aPlayer.scores[i] = scores[i];
+        }
+        return aPlayer;
+    }
+
+Typedef can be used to give a struct a more convenient type name
+    Don't need to say struct mystruct everywhere - just mystruct
+    e.g.
+        typedef struct point {
+            int x;
+            int y;
+        } point;
+
+Pointer to struct
+    Can have a pointer like any other type
+    point mypoint = {2, 5};
+    point *p = &mypoint;
+
+Structs are typically allocated dynamic memory and accessed with pointers
+    Arrow operator -> used to access members of struct
+    e.g. p->x = 3
+
+Structs can be any combination of types - including other structs!

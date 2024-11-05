@@ -61,6 +61,10 @@ De-reference/indirection operator * (same as pointer initialiser)
     int t = *p; //Get value pointed at by pointer, t = 10
     *p = 20; //Assign value to location pointed at, n = 20
 
+!!!IMPORTANT SYNTAX!!!
+    *p reads/writes WHAT IS STORED at the pointer location
+    p reads/writes the pointer LOCATION
+
 Arrays decay to pointers to their first element
     int *p = myarr; is the same as iint *p = &(myarr[0]);
     char *p = mystr; is the same as char *p = &(mystr[0]);
@@ -72,3 +76,63 @@ Pointer arithmetic
         printf("%i \n", *(p+1)); //prints 2
 
     Offset takes into account value sizes - no need to calculate actual number of pointer to nth element
+
+Pointers and arrays
+    Square bracket syntax myarr[n] is just syntactic sugar for *(a+n)
+    Arrays passed as function arguments also just decay into pointers
+        So only pointer copied into function, not array
+        Changes made to array inside function persist outside of function
+            E.g. a function that returns sorted array will permanently sort the array that is passed to it
+
+Array size
+    sizeof determines size of array DEFINED USING AN ARRAY TYPE
+        e.g. int myarr[] = {1, 2, 3, 4, 5} //myarr has type int[5]
+        Array doesn't store its own size
+        Length can also be calculated by sizeof(myarr)/sizeof(myarr[0])
+    Pointer to array only represents 1 memory location
+        So sizeof(*p) will equal sizeof(myarr[0]) and not sizeof(myarr)
+        And functions need array size to be passed as argument
+    Arrays of size 0 cannot be defined
+
+String length
+    C string is a character array with \0 marking end
+    Can subtract first pointer from last pointer
+    Like so
+        int mystrlen(char *mystr) {
+            char *c = mystr; //Equivalent to char *c = &(mystr[0])
+            while (*c) ++c;
+            return c - mystr; //Subtract pointer to mystr[0] from pointer to \0, to get length
+        }
+
+String copy
+    void strcpy(char *to, char *from) {
+        while (*to++ = *from++);
+    }
+    //While *from != \0, assign value at *from to *to
+    //And increment both pointers
+
+    //Comprehensible version
+    void strcpy(char *to, char *from) {
+        while (*from) {
+            *to = *from;
+            from++;
+            to++;
+        }
+        *to = "\0"
+    }
+
+    strcpy is unsafe - doesn't check:
+        If memory allocated
+        If destination array big enough
+        If pointers valid
+        If strings are null-terminated
+        If arrays overlap
+
+Variable swap
+    void swap(int *a, int *b) {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+    //Modifies *a and *b directly (can't do the same with just variables)
+
