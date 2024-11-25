@@ -34,7 +34,7 @@ Function that makes player structs
     }
 
 Typedef can be used to give a struct a more convenient type name
-    Don't need to say struct mystruct everywhere - just mystruct
+    Don't need to say [struct mystruct instance] everywhere - just [mystruct instance]
     e.g.
         typedef struct point {
             int x;

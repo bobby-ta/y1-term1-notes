@@ -1,0 +1,41 @@
+Haskell is a functional language
+    No state - data is immutable
+    No variables
+    No loops
+    Just functions
+    Pure functions - a function will always yield the same return value given the same parameter value
+
+Comments using --
+
+Function declarations - examples
+    doubleMe x = x + x
+    doubleUs x y = doubleMe x + doubleMe y
+
+    doubleIfSmall = if x > 100
+                    then x
+                    else x * 2
+
+Functions should be typed like
+    [function] :: [param type] -> [param type] -> ... -> [return type]
+    e.g. doubleMe :: Int -> Int
+
+Binary functions can be called as infix functions (between args, like mathematical functions) using backticks
+    e.g. result = 28 `plus` 14
+
+Function currying
+    Functions with multiple arguments are treated as a series of functions that take 1 argument (each other)
+    Every successive argument you supply decreases the number of arguments it needs
+    This repeats until all the arguments are supplied, yielding a function with 0 arguments, i.e. a constant
+
+    add :: int -> int -> int -> int -- Takes 3 arguments
+    result = add 5 8 13 -- 26
+    result = add 5 8 -- function that adds 5 and 8 to 1 integer argument
+
+Pattern matching (sort of substitutes for switch statements)
+    Haskell evaluates argument against every pattern until it finds one that matches
+    zeroToOne 0 = 1
+    zeroToOne x = x
+
+Why Haskell?
+    Has higher-order functions
+    Immutability makes it good for concurrent applications
