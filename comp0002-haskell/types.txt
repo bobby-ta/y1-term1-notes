@@ -1,0 +1,41 @@
+A type is a collection of related values
+Haskell is statically typed - datatypes stay constant after compilation
+
+Every expression must have a valid type, calculated by type inference before the expression is evaluated
+    This makes Haskell type safe - type errors never occur during evaluation
+
+Basic/primitive types are the fundamental types built into Haskell
+    Bool - logical values
+    Char - single characters
+    String - strings of characters
+    Int - fixed-size integers
+    Integer - arbitrary-size integers
+    List - sequence of values of same type
+        Represented by value type in square brackets, e.g. [Bool]
+        The type of a list doesn't let you know its length
+        Type of elements is unrestricted
+    Tuple - sequence of values of (possibly) different types, e.g. (Bool, Bool)
+        The type of a tuple shows its length
+        Type of elements is unrestricted
+
+Functions
+    A function is a mapping from values of one type to those of another
+    Argument and return types are unrestricted
+
+Working with multiple types
+    Many functions are polymorphic - work on multiple types
+        Type variables can be substituted for type names to achieve this
+        zip :: [a] → [b] → [(a,b)]
+    A class is a collection of types that support certain operations - called methods of the class
+        Eq - equality types (can be compared for equality)
+        Ord - ordered types (can be compared for greater/less than etc.)
+        Show - showable types (can be converted to string, to be printed)
+            This is done automatically when print is called
+        Read - readable types (can convert from string to these types)
+        Num - numeric types (self-explanatory)
+    Class constraints can be used to limit the parameters to a few similar types
+        (+) :: Num a ⇒ a → a → a -- Type has to be of class Num
+        a is a type variable
+
+
+

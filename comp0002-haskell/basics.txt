@@ -23,13 +23,18 @@ Binary functions can be called as infix functions (between args, like mathematic
     e.g. result = 28 `plus` 14
 
 Function currying
-    Functions with multiple arguments are treated as a series of functions that take 1 argument (each other)
+    add :: (Int, Int) -> Int -- Takes arguments at the same time
+    add_c :: Int -> Int -> Int -- Takes arguments one at a time (curried)
+
+    When currying, functions with multiple arguments are treated as a series of functions that take 1 argument (each other)
     Every successive argument you supply decreases the number of arguments it needs
     This repeats until all the arguments are supplied, yielding a function with 0 arguments, i.e. a constant
 
     add :: int -> int -> int -> int -- Takes 3 arguments
     result = add 5 8 13 -- 26
-    result = add 5 8 -- function that adds 5 and 8 to 1 integer argument
+    result = add 5 8 -- Takes 1 argument, adds it to 5 and 8
+
+    Curried functions get 'filled' from the left - intuitively
 
 Pattern matching (sort of substitutes for switch statements)
     Haskell evaluates argument against every pattern until it finds one that matches
@@ -39,3 +44,7 @@ Pattern matching (sort of substitutes for switch statements)
 Why Haskell?
     Has higher-order functions
     Immutability makes it good for concurrent applications
+    Statically typed with type inference
+    Type classes and polymorphism
+    Automated, random, property-based testing
+    Supports Domain-Specific Languages
